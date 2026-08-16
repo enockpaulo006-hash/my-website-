@@ -379,7 +379,7 @@ if (contactForm) {
     contactForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const fields = contactForm.querySelectorAll("input, textarea");
+        const fields = contactForm.querySelectorAll("input[name], textarea[name]");
         const allFilled = [...fields].every((field) => field.value.trim());
 
         if (!allFilled) {
@@ -387,10 +387,61 @@ if (contactForm) {
             return;
         }
 
-        alert("Thank you for your message. I will get back to you soon.");
+        const name = contactForm.querySelector('input[name="name"]').value.trim();
+        const email = contactForm.querySelector('input[name="email"]').value.trim();
+        const phone = contactForm.querySelector('input[name="phone"]').value.trim();
+        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
+        const phoneNumber = "255613938219";
+
+        const whatsappMessage = [
+            "Hello Enock,",
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Phone Number: ${phone}`,
+            "",
+            `Message: ${message}`
+        ].join("\n");
+
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
         contactForm.reset();
+        alert("Your message is ready in WhatsApp.");
     });
 }
+
+document.querySelectorAll(".copy-button").forEach((button) => {
+    button.addEventListener("click", async () => {
+        const value = button.dataset.copy || "";
+        const originalText = button.textContent;
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(value);
+            } else {
+                const tempInput = document.createElement("input");
+                tempInput.value = value;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+            }
+
+            button.textContent = "Copied!";
+            button.classList.add("is-copied");
+            window.setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove("is-copied");
+            }, 1500);
+        } catch (error) {
+            button.textContent = "Copy failed";
+            window.setTimeout(() => {
+                button.textContent = originalText;
+            }, 1600);
+        }
+    });
+});
 
 const revealTargets = document.querySelectorAll(
     ".about-text, .stat, .skill-category, .timeline-item, .project-card, .contact-item, .contact-form"
