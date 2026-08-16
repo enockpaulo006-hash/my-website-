@@ -369,6 +369,10 @@
                         <div>
                             <h4>Email</h4>
                             <p><a href="mailto:enockpaulo006@gmail.com">enockpaulo006@gmail.com</a></p>
+                            <div class="contact-actions">
+                                <a href="mailto:enockpaulo006@gmail.com" class="contact-action-btn primary">Email Me</a>
+                                <button type="button" class="contact-action-btn copy-button" data-copy="enockpaulo006@gmail.com">Copy Email</button>
+                            </div>
                         </div>
                     </div>
                     <div class="contact-item card">
@@ -376,6 +380,11 @@
                         <div>
                             <h4>Phone</h4>
                             <p><a href="tel:+255613938219">+255 613 938 219</a></p>
+                            <div class="contact-actions">
+                                <a href="tel:+255613938219" class="contact-action-btn primary">Call Now</a>
+                                <a href="https://wa.me/255613938219?text=Hello%20Enock%2C%20I%20want%20to%20reach%20out%20about%20your%20work." class="contact-action-btn whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                                <button type="button" class="contact-action-btn copy-button" data-copy="+255613938219">Copy Phone</button>
+                            </div>
                         </div>
                     </div>
                     <div class="contact-item card">
@@ -389,18 +398,18 @@
 
                 <form class="contact-form card" id="contactForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary">Send via WhatsApp</button>
                 </form>
             </div>
         </div>
